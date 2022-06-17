@@ -1,0 +1,46 @@
+server:
+  port: 9090
+
+spring:
+  rabbitmq:
+    listener:
+      simple:
+        default-requeue-rejected: false
+    host: 192.168.8.76
+    port: 5672
+    username: guest
+    password: guest
+
+  kafka:
+    admin:
+      bootstrap-servers: 192.168.8.58:9092,192.168.8.57:9093
+      client-id: fbang.server-client-local-id
+    consumer:
+      bootstrap-servers: 192.168.8.58:9092,192.168.8.57:9093
+      client-id: fbang.server-local-producer
+      groupId: ftech.fbang.local.group
+      auto-offset-reset: latest
+    producer:
+      bootstrap-servers: 192.168.8.58:9092,192.168.8.57:9093
+      client-id: fbang.server-local-consumer
+      topic-stream-enter-room: fbang.server_stream_enter_room
+      topic-stream-leave-room: fbang.server_stream_leave_room
+      topic-close-stream-room: fbang.server_close_stream_room
+      topic-stream-comment: fbang.server_stream_comment
+      topic-stream-join-giveaway: fbang.server_stream_join_giveaway
+      topic-stream-join-vote: fbang.server_stream_join_vote
+      topic-streamer-open-giveaway: fbang.server_streamer_open_giveaway
+      topic-request-cash-out: fbang.server_request_cash_out
+    sasl:
+      mechanism: "PLAIN"
+      jaas:
+        config:
+          username: "admin"
+          password: "admin-secret"
+      security:
+        protocol: "SASL_PLAINTEXT"
+
+
+
+
+
